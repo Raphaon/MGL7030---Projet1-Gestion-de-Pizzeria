@@ -32,34 +32,45 @@
                     </h2>
                     <div class="garniture">
                        
-                         <form action="" method="post">
-                            <li>
-                                    <input type="checkbox" name="Pepperoni" id="Pepperoni"><label for="Pepperoni"> Pepperoni</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Oignon" id="Oignon"><label for="Oignon"> Oignon</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Poulet" id="Poulet"><label for="Poulet"> Poulet</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Poivron" id="Poivron"><label for="Poivron"> Poivron</label>
-                            </li>
+                        <form action="" method="post">
+                            <div>
+                                <table class="table-garniture">
+                                    <tr>
+                                        <td><input type="radio" name="viande" value="Pepperoni"> Pepperoni</td>
+                                        <td><input type="radio" name="oigon" value="Oignon"> Oignon</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="radio" name="viande" value="Poulet"> Poulet</td>
+                                        <td><input type="radio" name="poivron" value="Poivron"> Poivron</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="radio" name="viande" value="Crevette"> Crevette</td>
+                                        <td><input type="radio" name="champignon" value="Champignon"> Champignon</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <h2>Format</h2>
 
-                            <li>
-                                    <input type="checkbox" name="Viande" id="Viande"><label for="Viande"> Viande</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Olives" id="Olives"><label for="Olives"> Olives</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Crevette" id="Crevette"><label for="Crevette"> Crevette</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Champignon" id="Champignon"><label for="Champignon"> Champignon</label>
-                            </li>
+                            <div>
+                                <table class="table-format">
+                                    <tr>
+                                        <td><input type="radio" name="format" value="Petit"></td>
+                                        <td>Petite</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="radio" name="format" value="Moyen"></td>
+                                        <td>Moyenne</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="radio" name="format" value="Grand"></td>
+                                        <td>Grande</td>
+                                    </tr>
+                                </table>
+                            </div>
 
+                            <button type="submit">Commander</button>
                         </form>
+
                     </div>
        
                 </div>
