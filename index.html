@@ -32,42 +32,117 @@
                     </h2>
                     <div class="garniture">
                        
-                         <form action="" method="post">
-                            <li>
-                                    <input type="checkbox" name="Pepperoni" id="Pepperoni"><label for="Pepperoni"> Pepperoni</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Oignon" id="Oignon"><label for="Oignon"> Oignon</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Poulet" id="Poulet"><label for="Poulet"> Poulet</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Poivron" id="Poivron"><label for="Poivron"> Poivron</label>
-                            </li>
+                         <form action="#" method="post">
 
-                            <li>
-                                    <input type="checkbox" name="Viande" id="Viande"><label for="Viande"> Viande</label>
+                            <div class="type-pizza">
+                                <li>
+                                    <input type="radio" name="garniture" id="Pepperoni" value="Pepperoni"><label for="Pepperoni"> Pepperoni</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="garniture" id="Poulet" value="Poulet" ><label for="Poulet"> Poulet</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="garniture" value="Crevette"  id="Crevette"><label for="Crevette"> Crevette</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="garniture" value="Viande"  id="Viande"><label for="Viande"> Viande</label>
+                                </li>
+                            </div>
+                            <div class="legumes">
+                               
+
+                               
                             </li>
-                            <li>
-                                    <input type="checkbox" name="Olives" id="Olives"><label for="Olives"> Olives</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Crevette" id="Crevette"><label for="Crevette"> Crevette</label>
-                            </li>
-                            <li>
-                                    <input type="checkbox" name="Champignon" id="Champignon"><label for="Champignon"> Champignon</label>
-                            </li>
+                                 <li>
+                                        <input type="checkbox" value="Poivron" name="legume" id="Poivron"><label for="Poivron"> Poivron</label>
+                                </li>
+                                    
+                                    <label for="Oignon"> <input type="checkbox" 
+                                            value="Oignon"
+                                            name="legume" id="Oignon">Oignon</label>
+                                </li-->
+                                <li>
+                                        <input type="checkbox" value="Poivron" name="legume" id="Poivron"><label for="Poivron"> Poivron</label>
+                                </li>
+
+                            
+                                <li>
+                                        <input type="checkbox" value="Olives" name="legume" id="Olives"><label for="Olives"> Olives</label>
+                                </li>
+
+                                <li>
+                                        <input type="checkbox" value="Champignon" name="legume" id="Champignon"><label for="Champignon"> Champignon</label>
+                                </li-->
+                                
+                           
+                           
+                            </div>
+                            
+                           
 
                         </form>
                     </div>
+
+                    <div>
+                        <h2>Format</h2>
+                        <table  >
+                            <tr>
+                                <td class="radio_format">
+                                    <input   type="radio" value="petite" name="format" id="petite">
+                                <td>    
+                                        <label for="petite">Petite</label></td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="radio_format">
+                                    <input type="radio"  name="format" id="moyenne" value="moyenne">
+                                </td>  
+                                <td><label for="moyenne">Moyenne</label></td>
+                            </tr>
+                            <tr>
+                                <td class="radio_format"><input type="radio" value="grande"  name="format" id="grande"></td>
+                                 <td><label for="grande">Grande</label></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="btn-commander">
+                        <input type="button" value="Commander" id="orderBtn">
+                    </div>
        
+                </div>
+
+                <div class="command-container">
+                     <h2>Commandes</h2>
+                     <table id="command-entry" border="1">
+
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Format</th>
+                            <th>Type</th>
+                            <th>Garniture</th>
+                            <th>#</th>
+                       </tr>
+                        </thead>
+                        <tbody class="command-item">
+                           
+                        </tbody>
+                        
+                        <tfoot>
+                            <tr>
+                                <th>Date</th>
+                                <th>Format</th>
+                                <th>Type</th>
+                                <th>Garniture</th>
+                                <th>#</th>
+                            </tr>
+                        </tfoot>
+                     </table>
                 </div>
                  
                 </div>
-                <div class="command-container">
-                     Commandes
-                </div>
+                
             </div>
             
         </main>

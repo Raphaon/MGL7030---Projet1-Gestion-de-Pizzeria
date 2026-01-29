@@ -68,6 +68,7 @@ main .container .pizzas-container{
 main .container .command-container{
     border: groove;
     grid-row: 2/3;
+    background-color: #ff8675;
 }
 
 
@@ -120,7 +121,7 @@ h2{
 }
 
 
-.garniture li:nth-child(2n+1) {
+/*.garniture li:nth-child(2n+1) {
     grid-column:1/2;
     margin-left: 47%;
 }
@@ -129,7 +130,7 @@ h2{
     gap: 200px;
      margin-right: 10%;
 
-}
+}*/
 
 
 .garniture li {
@@ -138,4 +139,58 @@ h2{
 
     
     align-items: right;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table tr{
+    height: 50px;
+    border: 1px solid black;
+}
+
+.radio_format{
+    text-align: center;
+    justify-content: center;
+    width: 10%;
+    border: 1px solid black;
+}
+
+
+
+
+.btn-commander {
+    text-align: center;
+    padding: 30px;
+}
+
+input[type="button"]{
+      text-align: center;
+    height: 50px;
+    font-size: large;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.btn-commander input{
+
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+
+.btn-delete input{
+     background-color: #dc3545;
+    color: #ffffff;
+}
+
+.command-ligne{
+    border: 1px solid black;
+    width: 100%;
+}
+
+thead,  tfoot{
+    border: 1px solid black;
 }
