@@ -34,14 +34,13 @@ main {
     grid-template-columns: 1fr 1fr 1fr ;
     grid-template-rows: 1fr 1fr;
     grid-column: 1/3;
-    border: groove;
+
 }
 
 main aside {
 
     grid-column: 1/2;
     grid-row: 1/2;
-    border: groove;
     text-align: center;
     display: grid;
     grid-template-columns: 25% 1fr;
@@ -54,19 +53,18 @@ main aside {
 main .container{
     grid-column: 2/4;
     grid-row: 1/3;
-    border: groove;
     
 }
 
 
 main .container .pizzas-container{
-    border: groove;
+
     grid-row: 1/2;
 }
 
 
 main .container .command-container{
-    border: groove;
+    
     grid-row: 2/3;
     background-color: #ff8675;
 }

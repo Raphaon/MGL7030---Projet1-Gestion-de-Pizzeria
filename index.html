@@ -1,22 +1,59 @@
+<!--
+UQAM : Maitrise en Genie logiciel MGL7030 
+
+Projet 1 : Gestion d'une Pizzeria , 
+
+
+============== Intervenants ============== 
+
+1- Rapha ONDOBO
+2- Sidy Gueye
+
+Avant-propos 
+
+Dans le cadre de ce projet il est question de mettre en pratique les connaissances acquise dans le cours de developpement d'application web 3 tiers 
+
+ =====================  Description ===================
+
+Pour ce projet, vous aurez à construire la couche présentation (“frontend”) d’une
+application web. Cette couche sera développée en HTML, CSS et JavaScript côté client.
+L’objectif est de mettre en pratique les notions de ces langages. L’application web à
+réaliser est une application de gestion de Pizzeria.
+
+-->
+
+
 <html lang="fr">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application de gestion de pizzeria</title>
     <link rel="stylesheet" href="./Assets/Css/main.css">
+    <script src="./Assets/Js/loader.js"></script>
+
 </head>
+
+
 <body>
+    <!--
+    definition d'un conteneur princiapale dans lequel tous les autres conteneurs vont etre inclus
+    -->
     <div id="global-container">
+
+        <!-- contient l'entete de note page il contient le titre -->
         <header class="title">
             <h1> PIZZERIA </h1>
         </header>
-
+       
+        <!-- contient la partie principale qui va potentiellement etre modifie aucours 
+        de la manipulation de nos elements -->
         <main>
 
-        
+                <!-- Menu de naviagation qui va afficher la liste des prix  -->
             <aside>
                 <h2>Menu </h2>
-                <ul>
+                <ul class="menu-items">
                         <li><a href="http://">Petite pizza … 8.00$</a></li>
                         <li><a href="http://">Moyenne pizza … 12.00$</a></li>
                         <li><a href="http://">Grande pizza … 15.00$</a></li>
@@ -25,55 +62,69 @@
                 </ul>
 
             </aside>
+
+
+
+            <!-- les garnitures et les commandes  -->
+
             <div class="container">
+
+                <!-- les garnitures  -->
                 <div class="pizzas-container">
                     <h2>
                         Garniture
                     </h2>
                     <div class="garniture">
-                       
-                         <form action="#" method="post">
+                
+                        <form action="#" method="post">
 
                             <div class="type-pizza">
-                                <li>
-                                    <input type="radio" name="garniture" id="Pepperoni" value="Pepperoni"><label for="Pepperoni"> Pepperoni</label>
+                                
+                                <li> <input type="radio" name="garniture" id="Pepperoni" value="Pepperoni">
+                                    <label for="Pepperoni"> Pepperoni</label>
                                 </li>
+                                
                                 <li>
-                                    <input type="radio" name="garniture" id="Poulet" value="Poulet" ><label for="Poulet"> Poulet</label>
+                                    <input type="radio" name="garniture" id="Poulet" value="Poulet" >
+                                    <label for="Poulet"> Poulet</label>
                                 </li>
+
                                 <li>
-                                    <input type="radio" name="garniture" value="Crevette"  id="Crevette"><label for="Crevette"> Crevette</label>
+                                    <input type="radio" name="garniture" value="Crevette"  id="Crevette">
+                                    <label for="Crevette"> Crevette</label>
                                 </li>
+
                                 <li>
-                                    <input type="radio" name="garniture" value="Viande"  id="Viande"><label for="Viande"> Viande</label>
+                                    <input type="radio" name="garniture" value="Viande"  id="Viande">
+                                    <label for="Viande"> Viande</label>
                                 </li>
                             </div>
+
+
                             <div class="legumes">
-                               
-
-                               
-                            </li>
-                                 <li>
-                                        <input type="checkbox" value="Poivron" name="legume" id="Poivron"><label for="Poivron"> Poivron</label>
-                                </li>
-                                    
-                                    <label for="Oignon"> <input type="checkbox" 
-                                            value="Oignon"
-                                            name="legume" id="Oignon">Oignon</label>
-                                </li-->
-                                <li>
-                                        <input type="checkbox" value="Poivron" name="legume" id="Poivron"><label for="Poivron"> Poivron</label>
-                                </li>
-
-                            
-                                <li>
-                                        <input type="checkbox" value="Olives" name="legume" id="Olives"><label for="Olives"> Olives</label>
-                                </li>
 
                                 <li>
-                                        <input type="checkbox" value="Champignon" name="legume" id="Champignon"><label for="Champignon"> Champignon</label>
-                                </li-->
+                                    <input type="checkbox" value="Poivron" name="legume" id="Poivron">
+                                    <label for="Poivron"> Poivron</label>
+                                </li>
+                                <li>
+                                        <label for="Oignon"> <input type="checkbox" 
+                                                value="Oignon"
+                                                name="legume" id="Oignon">Oignon</label>
+                                    </li>
+                                    <li>
+                                            <input type="checkbox" value="Poivron" name="legume" id="Poivron"><label for="Poivron"> Poivron</label>
+                                    </li>
+
                                 
+                                    <li>
+                                            <input type="checkbox" value="Olives" name="legume" id="Olives"><label for="Olives"> Olives</label>
+                                    </li>
+
+                                    <li>
+                                            <input type="checkbox" value="Champignon" name="legume" id="Champignon"><label for="Champignon"> Champignon</label>
+                                    </li>
+                                    
                            
                            
                             </div>

@@ -1,3 +1,4 @@
+
 btnCommand = document.getElementById('orderBtn');
 message = "Veuillez sélectionner une garniture et un format et des legumes";
 commadItems = document.querySelector("tbody[class=command-item]");
@@ -8,16 +9,22 @@ commadItems.innerHTML = "Aucune Entree dans votre commande";
 btnCommand.addEventListener('click', function()
  {
 
-    if(document.querySelector("input[name='format']:checked") &&
+    //Quand on clique sur lbtn commander voici  ce qui s'excute 
+
+    if(document.querySelector("input[name='format']:checked")  && 
     document.querySelector("input[name='garniture']:checked"))
     {
         format = document.querySelector("input[name='format']:checked").value; 
         garniture = document.querySelector("input[name='garniture']:checked").value;
+
         legumes = [...document.querySelectorAll("input[name='legume']:checked")].map(leg => leg.value)
+
+        // defini l'identifier d'une line de commande 
         if(nbreline == 0){
                 commadItems.innerHTML ="";
-            }
-    }
+        }
+
+
         let commandDate = getDateNow();
 
 
@@ -35,14 +42,8 @@ btnCommand.addEventListener('click', function()
                                  nbreline++;
                                  message = "Commande ajoutée avec succès";
                             }
-
-                           
-
-
-    
-
+    }
         
-    
         alert(message);
 
 });

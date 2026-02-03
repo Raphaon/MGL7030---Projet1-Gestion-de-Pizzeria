@@ -1,0 +1,28 @@
+
+
+{
+    "Pizzas": [
+        {
+            "id": 1,
+            "taille": "Moyenne",
+            "prix": 12.00,
+            "ingredients": ["Sauce tomate", "Mozzarella", "Oignons"]
+        }, 
+         {
+            "id": 2,
+            "taille": "Petite",
+            "prix": 8.00,
+            "ingredients": ["Sauce tomate", "Mozzarella", "Oignons"]
+        },
+
+         {
+            "id": 3,
+            "taille": "Grande",
+            "prix": 15.00,
+            "ingredients": ["Sauce tomate", "Mozzarella", "Oignons"]
+        }
+
+    ]
+}
+  
+
