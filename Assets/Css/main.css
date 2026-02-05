@@ -134,10 +134,9 @@ h2{
 .garniture li {
     list-style: none;
     font-size: 20px;
-
-    
     align-items: right;
 }
+<<<<<<< HEAD
 
 table{
     border-collapse: collapse;
@@ -192,3 +191,59 @@ input[type="button"]{
 thead,  tfoot{
     border: 1px solid black;
 }
+=======
+.table-garniture {
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 30px;
+    margin-left: auto;
+    border-collapse: collapse;
+}
+
+.table-garniture td {
+    padding-top: 12px;
+    padding-right: 40px;
+    padding-bottom: 12px;
+    padding-left: 40px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.garniture {
+    display: flex;
+    justify-content: center;
+}
+
+.garniture form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.garniture form > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.table-format {
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-left: auto;
+    border-collapse: collapse;
+}
+
+.table-format td {
+    border: 1px solid black;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+
+>>>>>>> 50c790a37014c5e44d2a24288450a333bb8e987e
