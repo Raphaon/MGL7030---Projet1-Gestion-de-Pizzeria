@@ -54,11 +54,11 @@ réaliser est une application de gestion de Pizzeria.
             <aside>
                 <h2>Menu </h2>
                 <ul class="menu-items">
-                        <li><a href="http://">Petite pizza … 8.00$</a></li>
-                        <li><a href="http://">Moyenne pizza … 12.00$</a></li>
-                        <li><a href="http://">Grande pizza … 15.00$</a></li>
-                        <li><a href="http://">Garniture viande …3.00$</a></li>
-                        <li><a href="http://">Garniture légumes…1,00$</a></li>
+                        <li><a>Petite pizza … 8.00$</a></li>
+                        <li><a>Moyenne pizza … 12.00$</a></li>
+                        <li><a>Grande pizza … 15.00$</a></li>
+                        <li><a>Garniture viande …3.00$</a></li>
+                        <li><a>Garniture légumes…1,00$</a></li>
                 </ul>
 
             </aside>
@@ -181,6 +181,7 @@ réaliser est une application de gestion de Pizzeria.
                             <th>Format</th>
                             <th>Type</th>
                             <th>Garniture</th>
+                            <th>Prix ($)</th>
                             <th>#</th>
                        </tr>
                         </thead>
@@ -194,7 +195,12 @@ réaliser est une application de gestion de Pizzeria.
                                 <th>Format</th>
                                 <th>Type</th>
                                 <th>Garniture</th>
+                                <th>Prix ($)</th>
                                 <th>#</th>
+                            </tr>
+                            <tr>
+                                <td colspan="5"><strong>Total</strong></td>
+                                <td id="totalPrix">0 $</td>
                             </tr>
                         </tfoot>
                      </table>

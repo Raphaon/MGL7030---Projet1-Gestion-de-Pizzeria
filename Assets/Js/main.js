@@ -4,7 +4,16 @@ message = "Veuillez sélectionner une garniture et un format et des legumes";
 commadItems = document.querySelector("tbody[class=command-item]");
 nbreline = 0;
 commadItems.innerHTML = "Aucune Entree dans votre commande";
-
+// prix des différents constituants d'une pizza
+const PRIX = {
+    format: {
+        petite: 8,
+        moyenne: 12,
+        grande: 15
+    },
+    viande: 3,
+    legume: 1
+};
 
 btnCommand.addEventListener('click', function()
  {
@@ -78,3 +87,13 @@ document.addEventListener("click", function(event) {
        
     }
 });
+
+
+let totalCommande = 0;
+
+function calculerPrix(format, legumesCount) {
+    return PRIX.format[format] +
+           PRIX.viande +
+           (legumesCount * PRIX.legume);
+}
+
