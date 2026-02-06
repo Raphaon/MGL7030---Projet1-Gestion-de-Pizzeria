@@ -136,14 +136,13 @@ h2{
     font-size: 20px;
     align-items: right;
 }
-<<<<<<< HEAD
 
-table{
+.table-format{
     border-collapse: collapse;
     width: 100%;
 }
 
-table tr{
+.table-format tr{
     height: 50px;
     border: 1px solid black;
 }
@@ -191,7 +190,6 @@ input[type="button"]{
 thead,  tfoot{
     border: 1px solid black;
 }
-=======
 .table-garniture {
     margin-top: 0;
     margin-right: auto;
@@ -246,4 +244,3 @@ thead,  tfoot{
 }
 
 
->>>>>>> 50c790a37014c5e44d2a24288450a333bb8e987e
