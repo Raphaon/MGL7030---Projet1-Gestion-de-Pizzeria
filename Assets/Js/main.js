@@ -4,6 +4,9 @@ message = "Veuillez sélectionner une garniture et un format et des legumes";
 commadItems = document.querySelector("tbody[class=command-item]");
 nbreline = 0;
 commadItems.innerHTML = "Aucune Entree dans votre commande";
+
+let totalCommande = 0;
+
 // prix des différents constituants d'une pizza
 const PRIX = {
     format: {
@@ -35,12 +38,14 @@ btnCommand.addEventListener('click', function()
 
 
         let commandDate = getDateNow();
-
+        let prix = calculerPrix(format, legumes.length);
+        totalCommande += prix;
 
         if(commadItems.innerHTML += "<tr id="+ nbreline +" ><td>"+ commandDate  +"</td>"+
                                 "<td> "+ format + "</td>" +
                                 "<td> Pizza " + garniture +" </td>"+
                                 "<td> "+  legumes + "</td>"+
+                                "<td> " + prix + " $</td>"+
                                 "<td>" +
                                 "<div class='btn-delete'>" +
                                         "<input type='button' value='Supprimer' id='deleteBtn"+ nbreline +"'>"+
@@ -51,6 +56,15 @@ btnCommand.addEventListener('click', function()
                                  nbreline++;
                                  message = "Commande ajoutée avec succès";
                             }
+        
+                        
+
+
+        document.getElementById("totalPrix").textContent = totalCommande + " $";
+
+        nbreline++;
+        message = "Commande ajoutée avec succès";
+
     }
         
         alert(message);
@@ -88,8 +102,7 @@ document.addEventListener("click", function(event) {
     }
 });
 
-
-let totalCommande = 0;
+// fonction pour calculer le prix
 
 function calculerPrix(format, legumesCount) {
     return PRIX.format[format] +
