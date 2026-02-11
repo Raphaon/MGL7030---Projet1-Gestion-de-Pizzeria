@@ -17,7 +17,9 @@ btnCommand.addEventListener('click', function()
         format = document.querySelector("input[name='format']:checked").value; 
         garniture = document.querySelector("input[name='garniture']:checked").value;
 
-        legumes = [...document.querySelectorAll("input[name='legume']:checked")].map(leg => leg.value)
+        legumes = [...document.querySelectorAll("input[name='legume']:checked")].map(leg => leg.value);    
+
+
 
         // defini l'identifier d'une line de commande 
         if(nbreline == 0){
