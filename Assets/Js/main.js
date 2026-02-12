@@ -47,7 +47,8 @@ btnCommand.addEventListener('click', function()
                                 "<td> "+ format + "</td>" +
                                 "<td> Pizza " + garniture +" </td>"+
                                 "<td> "+  legumes + "</td>"+
-                                "<td> " + prix + " $</td>"+
+                                "<td><input type='hidden' id='prix_ligne_"+ nbreline +"' name='prix_ligne' value='"+ prix +"'> " + prix + " $</td>"+
+                                
                                 "<td>" +
                                 "<div class='btn-delete'>" +
                                         "<input type='button' value='Supprimer' id='deleteBtn"+ nbreline +"'>"+
@@ -97,6 +98,9 @@ document.addEventListener("click", function(event) {
     if (event.target.id.startsWith("deleteBtn")) {
         let id = event.target.id;
         let row = document.getElementById(id.replace("deleteBtn", ""));
+            let prix_ligne = document.getElementById("prix_ligne_" + id.replace("deleteBtn", "")).value;
+            totalCommande -= parseFloat(prix_ligne);
+            document.getElementById("totalPrix").textContent = totalCommande + " $";    
         if(confirm("Voulez-vous vraiment supprimer cette commande ?")){ 
              row.remove();
         }
