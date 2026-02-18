@@ -9,7 +9,7 @@ var garnitureList = DBgarnitures;
 
 
 var pepperoni = new Pizza(1, "Petite", 30, "Pepperoni - Sauce tomate - formage"),
-    veggie = new Pizza(3, "Grande", 50, "Légumes grillés - Sauce tomate - formage");
+    veggie = new Pizza(3, "Grande", 50, "Légumes grillés - Sauce tomate - formage"), 
 
 btnCommand = document.getElementById('orderBtn'),
 message = "Veuillez sélectionner une garniture et un format et des legumes",
@@ -39,7 +39,7 @@ btnCommand.addEventListener('click', function()
     {
         let format = document.querySelector("input[name='format']:checked").value,
         garniture = document.querySelector("input[name='garniture']:checked").value,
-        legumes = [...document.querySelectorAll("input[name='legume']:checked")].map(leg => leg.value);    
+        legumes = [...document.querySelectorAll("input[name='legume']:checked")].map(leg => leg.value);   
 
         console.log(format, garniture, legumes);
 
