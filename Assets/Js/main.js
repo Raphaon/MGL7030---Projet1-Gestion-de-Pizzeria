@@ -1,10 +1,21 @@
+import { Pizza } from "./Models/Pizza.js";
+import { DBgarnitures } from "../../DB/garniture.js";
+    
 
-btnCommand = document.getElementById('orderBtn');
-message = "Veuillez sélectionner une garniture et un format et des legumes";
-commadItems = document.querySelector("tbody[class=command-item]");
+
+
+var garnitureList = DBgarnitures;
+
+
+
+var pepperoni = new Pizza(1, "Petite", 30, "Pepperoni - Sauce tomate - formage"),
+    veggie = new Pizza(3, "Grande", 50, "Légumes grillés - Sauce tomate - formage");
+
+btnCommand = document.getElementById('orderBtn'),
+message = "Veuillez sélectionner une garniture et un format et des legumes",
+commadItems = document.querySelector("tbody[class=command-item]"),
 nbreline = 0;
 commadItems.innerHTML = "Aucune Entree dans votre commande";
-
 let totalCommande = 0;
 
 // prix des différents constituants d'une pizza
@@ -26,12 +37,11 @@ btnCommand.addEventListener('click', function()
     if(document.querySelector("input[name='format']:checked")  && 
     document.querySelector("input[name='garniture']:checked"))
     {
-        format = document.querySelector("input[name='format']:checked").value; 
-        garniture = document.querySelector("input[name='garniture']:checked").value;
-
+        let format = document.querySelector("input[name='format']:checked").value,
+        garniture = document.querySelector("input[name='garniture']:checked").value,
         legumes = [...document.querySelectorAll("input[name='legume']:checked")].map(leg => leg.value);    
 
-
+        console.log(format, garniture, legumes);
 
         // defini l'identifier d'une line de commande 
         if(nbreline == 0){
@@ -64,8 +74,8 @@ btnCommand.addEventListener('click', function()
 
 
         document.getElementById("totalPrix").textContent = totalCommande + " $";
-
-        nbreline++;
+      
+     
         message = "Commande ajoutée avec succès";
 
     }
@@ -100,9 +110,14 @@ document.addEventListener("click", function(event) {
         let row = document.getElementById(id.replace("deleteBtn", ""));
             let prix_ligne = document.getElementById("prix_ligne_" + id.replace("deleteBtn", "")).value;
             totalCommande -= parseFloat(prix_ligne);
-            document.getElementById("totalPrix").textContent = totalCommande + " $";    
+            document.getElementById("totalPrix").textContent = totalCommande + " $";
         if(confirm("Voulez-vous vraiment supprimer cette commande ?")){ 
              row.remove();
+                nbreline--;
+                console.log(nbreline);
+             if(nbreline == 0){
+                commadItems.innerHTML = "Aucune Entree dans votre commande";
+             }
         }
        
     }
@@ -115,4 +130,15 @@ function calculerPrix(format, legumesCount) {
            PRIX.viande +
            (legumesCount * PRIX.legume);
 }
+
+
+
+
+
+
+
+
+
+
+
 

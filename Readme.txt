@@ -12,3 +12,6 @@ Pour ce projet, vous aurez à construire la couche présentation (“frontend”
 application web. Cette couche sera développée en HTML, CSS et JavaScript côté client.
 L’objectif est de mettre en pratique les notions de ces langages. L’application web à
 réaliser est une application de gestion de Pizzeria.
+
+
+Pour une meilleures utilisation il est important d'utiliser un serve web 

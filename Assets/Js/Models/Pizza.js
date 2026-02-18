@@ -2,11 +2,17 @@
 
 export class Pizza {
 
-                constructor(id, taille, prix, ingredients) {
-                this.id = id;
-                this.taille = taille;
-                this.prix = prix;
-                this.ingredients = ingredients;
+                constructor(id, taille, prix, ingredients) 
+                {
+                        this.id = id;
+                        this.taille = taille;
+                        this.prix = prix;
+                        this.ingredients = ingredients;
+                }
+
+
+        sayHello(){
+                alert('Je charge bien la classe Pizza');
         }
 
 }
