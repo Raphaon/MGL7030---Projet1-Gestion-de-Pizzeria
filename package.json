@@ -1,0 +1,25 @@
+{
+  "name": "mgl7030---projet2-gestion-de-pizzeria",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raphaon/MGL7030---Projet1-Gestion-de-Pizzeria.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Raphaon/MGL7030---Projet1-Gestion-de-Pizzeria/issues"
+  },
+  "homepage": "https://github.com/Raphaon/MGL7030---Projet1-Gestion-de-Pizzeria#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

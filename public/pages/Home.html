@@ -1,0 +1,225 @@
+<!--
+UQAM : Maitrise en Genie logiciel MGL7030 
+
+Projet 1 : Gestion d'une Pizzeria , 
+
+
+============== Intervenants ============== 
+
+1- Rapha ONDOBO
+2- Sidy Gueye
+
+Avant-propos 
+
+Dans le cadre de ce projet il est question de mettre en pratique les connaissances acquise dans le cours de developpement d'application web 3 tiers 
+
+ =====================  Description ===================
+
+Pour ce projet, vous aurez à construire la couche présentation (“frontend”) d’une
+application web. Cette couche sera développée en HTML, CSS et JavaScript côté client.
+L’objectif est de mettre en pratique les notions de ces langages. L’application web à
+réaliser est une application de gestion de Pizzeria.
+
+-->
+
+
+<html lang="fr">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application de gestion de pizzeria</title>
+    <link rel="stylesheet" href="./Assets/Css/main.css">
+   
+
+</head>
+
+
+<body>
+    <!--
+    definition d'un conteneur princiapale dans lequel tous les autres conteneurs vont etre inclus
+    -->
+    <div id="global-container">
+
+        <!-- contient l'entete de note page il contient le titre -->
+        <header class="title">
+            <h1> PIZZERIA </h1>
+        </header>
+       
+        <!-- contient la partie principale qui va potentiellement etre modifie aucours 
+        de la manipulation de nos elements -->
+        <main>
+
+                <!-- Menu de naviagation qui va afficher la liste des prix  -->
+            <aside>
+                <h2>Menu </h2>
+                <ul class="menu-items">
+                        <li><a>Petite pizza … 8.00$</a></li>
+                        <li><a>Moyenne pizza … 12.00$</a></li>
+                        <li><a>Grande pizza … 15.00$</a></li>
+                        <li><a>Garniture viande …3.00$</a></li>
+                        <li><a>Garniture légumes…1,00$</a></li>
+                </ul>
+
+            </aside>
+
+
+
+            <!-- les garnitures et les commandes  -->
+
+            <div class="container">
+
+                <!-- les garnitures  -->
+                <div class="pizzas-container">
+                    <h2>
+                        Garniture
+                    </h2>
+                    <div class="garnitures">
+                        <table class="table-garniture">
+
+                            <tr>
+                                <th>Viandes</th>
+                                <th>Légumes</th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <input type="radio" name="garniture" id="pepperoni" value="Pepperoni">
+                                    <label for="pepperoni">Pepperoni</label>
+                                </td>
+
+                                <td>
+                                    <input type="checkbox" name="legume" id="poivron" value="Poivron">
+                                    <label for="poivron">Poivron</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <input type="radio" name="garniture" id="poulet" value="Poulet">
+                                    <label for="poulet">Poulet</label>
+                                </td>
+
+                                <td>
+                                    <input type="checkbox" name="legume" id="oignon" value="Oignon">
+                                    <label for="oignon">Oignon</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <input type="radio" name="garniture" id="crevette" value="Crevette">
+                                    <label for="crevette">Crevette</label>
+                                </td>
+
+                                <td>
+                                    <input type="checkbox" name="legume" id="olives" value="Olives">
+                                    <label for="olives">Olives</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <input type="radio" name="garniture" id="viande" value="Viande">
+                                    <label for="viande">Viande</label>
+                                </td>
+
+                                <td>
+                                    <input type="checkbox" name="legume[]" id="champignon" value="Champignon">
+                                    <label for="champignon">Champignon</label>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <div>
+                        <h2>Format</h2>
+                        <table class="table-format">
+                            <tr>
+                                <td class="radio_format">
+                                    <input type="radio" value="petite" name="format" id="petite">
+                                </td>
+                                <td>
+                                    <label for="petite">Petite</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="radio_format">
+                                    <input type="radio" name="format" id="moyenne" value="moyenne">
+                                </td>
+                                <td>
+                                    <label for="moyenne">Moyenne</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="radio_format">
+                                    <input type="radio" value="grande" name="format" id="grande">
+                                </td>
+                                <td>
+                                    <label for="grande">Grande</label>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="btn-commander">
+                        <input type="button" value="Commander" id="orderBtn">
+                    </div>
+       
+                </div>
+
+                <div class="command-container">
+                     <h2>Commandes</h2>
+                     <table id="command-entry" border="1" class="table-format">
+
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Format</th>
+                            <th>Type</th>
+                            <th>Garniture</th>
+                            <th>Prix ($)</th>
+                            <th>#</th>
+                       </tr>
+                        </thead>
+                        <tbody class="command-item">
+                           
+                        </tbody>
+                        
+                        <tfoot>
+                            <tr>
+                                <th>Date</th>
+                                <th>Format</th>
+                                <th>Type</th>
+                                <th>Garniture</th>
+                                <th>Prix ($)</th>
+                                <th>#</th>
+                            </tr>
+                            <tr>
+                                <td colspan="5"><strong>Total</strong></td>
+                                <td id="totalPrix">0 $</td>
+                            </tr>
+                        </tfoot>
+                     </table>
+                </div>
+                 
+                </div>
+                
+            </div>
+            
+        </main>
+
+        <footer>
+            &copy Tout droit reserve 2026. 
+        </footer>
+    </div>
+
+    <script  type="module" src="./Assets/Js/main.js" ></script>
+
+</body>
+</html>
+
+
