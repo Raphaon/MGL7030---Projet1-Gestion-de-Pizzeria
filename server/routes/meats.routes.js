@@ -20,6 +20,8 @@ let meats  =
     { id: 5, name: "Bacon", prix: 3.00 },
     { id: 6, name: "Ham", prix: 3.00 }
 ];
+
+
 // GET → liste des viandes
 router.get("/", (req, res) => {
     res.json(meats);
@@ -28,15 +30,23 @@ router.get("/", (req, res) => {
 // POST → ajouter une viande
 router.post("/", (req, res) => {
 
-    const { name } = req.body;
 
-    if (!name) {
-        return res.status(400).json({ error: "Name is required" });
+    let newMeat  = "";
+    
+    if (!req) {
+        return res.status(400).json({ error: "Objet vide verifier vos entrees !" });
+    }
+    else{
+        newMeat = req.body;
+        if(newMeat.name == "" || newMeat.prix =="" ){
+              return res.status(400).json({ error: "Le de nom de la viande et son prix sont requis ! " });
+        }
     }
 
     const meat = {
         id: Date.now(),
-        name
+        name:newMeat.name,
+        prix:newMeat.prix
     };
 
     meats.push(meat);
@@ -57,7 +67,7 @@ router.delete("/:id", (req, res) => {
 
     meats.splice(index, 1);
 
-    res.json({ message: "Deleted" });
+    res.json({ message: "Deleted", meats  });
 });
 
 export default router;
