@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import meatsRoutes from "./routes/meats.routes.js";
 import veggiesRoutes from  "./routes/vegetables.routes.js";
 
-import commands from "./routes/commands.route.js";
+import commandsRoutes from "./routes/commands.routes.js";
 
 
 const app = express();
@@ -39,8 +39,7 @@ app.use("/api/veggies", veggiesRoutes);
 
 // Ajout de la route de commandes 
 
-
-app.use("/api/commands", commands);
+app.use("/api/commands", commandsRoutes);
 
 
 
@@ -65,7 +64,7 @@ app.use((req, res, next) => {
         return next();
     }
 
-    // 🔥 sinon SPA
+    // sinon SPA
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
