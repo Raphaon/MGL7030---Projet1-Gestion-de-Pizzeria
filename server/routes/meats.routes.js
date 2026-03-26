@@ -67,7 +67,7 @@ router.delete("/:id", (req, res) => {
 
     meats.splice(index, 1);
 
-    res.json({ message: "Deleted", meats  });
+    res.json({ message: "Suppression reussi !" });
 });
 
 export default router;

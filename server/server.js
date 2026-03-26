@@ -4,6 +4,9 @@ import { fileURLToPath } from "url";
 import meatsRoutes from "./routes/meats.routes.js";
 import veggiesRoutes from  "./routes/vegetables.routes.js";
 
+import commands from "./routes/commands.route.js";
+
+
 const app = express();
 const PORT = 3000;
 
@@ -31,6 +34,13 @@ app.use("/api/meats", meatsRoutes);
 //ajouter les routes des legumes 
 
 app.use("/api/veggies", veggiesRoutes);
+
+
+
+// Ajout de la route de commandes 
+
+
+app.use("/api/commands", commands);
 
 
 
