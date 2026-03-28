@@ -2,6 +2,10 @@
 import ROUTES from '../routes/routes.js';
 import AppConfig from '../Core/app.config.js';
 
+// j'importe la fonction de chargement dynamique des garnitures et du menu
+// elle est appelée apres chaque injection de Home.html dans le DOM
+import { chargerGarnitures } from '../../Assets/Js/main.js';
+
 /**
  * Je recupere le container de l'app pour y injecter les pages
  */
@@ -126,6 +130,12 @@ export const navigate = async (url) => {
     };
 
     await renderPage(route.pageFile);
+
+    // Si la page chargée est Home, on injecte dynamiquement
+    // les garnitures et le menu depuis l'API Express
+    if (route.pageId === "home") {
+        chargerGarnitures();
+    }
 };
 
 

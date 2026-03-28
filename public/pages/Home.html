@@ -50,15 +50,11 @@ réaliser est une application de gestion de Pizzeria.
         de la manipulation de nos elements -->
         <main>
 
-                <!-- Menu de naviagation qui va afficher la liste des prix  -->
+                <!-- liste des prix  -->
             <aside>
                 <h2>Menu </h2>
+                <!-- le menu est injectes dynamiquement par injecterMenuLateral() dans main.js -->
                 <ul class="menu-items">
-                        <li><a>Petite pizza … 8.00$</a></li>
-                        <li><a>Moyenne pizza … 12.00$</a></li>
-                        <li><a>Grande pizza … 15.00$</a></li>
-                        <li><a>Garniture viande …3.00$</a></li>
-                        <li><a>Garniture légumes…1,00$</a></li>
                 </ul>
 
             </aside>
@@ -81,54 +77,7 @@ réaliser est une application de gestion de Pizzeria.
                                 <th>Viandes</th>
                                 <th>Légumes</th>
                             </tr>
-
-                            <tr>
-                                <td>
-                                    <input type="radio" name="garniture" id="pepperoni" value="Pepperoni">
-                                    <label for="pepperoni">Pepperoni</label>
-                                </td>
-
-                                <td>
-                                    <input type="checkbox" name="legume" id="poivron" value="Poivron">
-                                    <label for="poivron">Poivron</label>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <input type="radio" name="garniture" id="poulet" value="Poulet">
-                                    <label for="poulet">Poulet</label>
-                                </td>
-
-                                <td>
-                                    <input type="checkbox" name="legume" id="oignon" value="Oignon">
-                                    <label for="oignon">Oignon</label>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <input type="radio" name="garniture" id="crevette" value="Crevette">
-                                    <label for="crevette">Crevette</label>
-                                </td>
-
-                                <td>
-                                    <input type="checkbox" name="legume" id="olives" value="Olives">
-                                    <label for="olives">Olives</label>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <input type="radio" name="garniture" id="viande" value="Viande">
-                                    <label for="viande">Viande</label>
-                                </td>
-
-                                <td>
-                                    <input type="checkbox" name="legume[]" id="champignon" value="Champignon">
-                                    <label for="champignon">Champignon</label>
-                                </td>
-                            </tr>
+                            <!-- Les sont injectées dynamiquement a partir de GET /api/meats et GET /api/veggies -->
 
                         </table>
                     </div>
@@ -221,5 +170,3 @@ réaliser est une application de gestion de Pizzeria.
 
 </body>
 </html>
-
-
