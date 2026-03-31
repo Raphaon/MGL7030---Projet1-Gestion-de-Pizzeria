@@ -59,11 +59,12 @@ router.post("/", (req, res)=>{
 
 
 router.delete("/:id", (req,  res)=>{
-    const id = req.params.id;
-    const index = commands.findIndex(c=> c.id===id);
+    const id = parseInt(req.params.id);
+    const index = commands.findIndex(c => c.id===id);
 
     if(index ===-1){
-        res.status(400).json({message:"Commande non trouvees"});
+
+        res.status(400).json({message:"Commande non trouvees" });
     }
 
     commands.splice(index, 1);

@@ -10,9 +10,4 @@ export class Pizza {
                         this.ingredients = ingredients;
                 }
 
-
-        sayHello(){
-                alert('Je charge bien la classe Pizza');
-        }
-
 }

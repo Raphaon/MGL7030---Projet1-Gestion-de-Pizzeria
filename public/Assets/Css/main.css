@@ -358,7 +358,7 @@ aside h2 {
     display: flex;
 }
 
-.menu-items li:hover a {
+.menu-items li:hover a, .radio_format:focus-within a {
     color: #e63946;
 }
 
@@ -383,7 +383,7 @@ aside h2 {
 }
 
 /* Effet au survol (Hover) */
-.menu-items li:hover {
+.menu-items li:hover, .radio_format:hover {
     background-color: #fff5f5; /* Fond rosé au survol */
     border-left: 4px solid #e63946; /* La bordure rouge apparaît */
     transform: translateX(8px); /* Petit décalage vers la droite */

@@ -51,7 +51,7 @@ router.post("/", (req, res) => {
 
     meats.push(meat);
 
-    res.status(201).json(meat);
+    res.status(201).json(meats);
 });
 
 //  DELETE → supprimer une viande

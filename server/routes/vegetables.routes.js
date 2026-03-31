@@ -50,20 +50,20 @@ router.post("/", (req, res)=>{
 
 
 router.delete("/:d", (req, res)=>{
-    const id = parseInt( req.params.id); 
+    const id = parseInt(req.params.id); 
+
     const index = veggies.findIndex(m => m.id===id );
 
     if(index === -1){
-        res.json("Elements non retrouves !! ");
+        res.status(400).json({message:"Elements non retrouves !! "});
     }
     
     veggies.splice(index, 1);
 
-    res.json({message:"Suppression effectuer avec success : "});
+    res.status(200).json({message:"Suppression effectuer avec success : "});
 
 
 });
-
 
 
 
