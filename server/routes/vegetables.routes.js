@@ -49,17 +49,16 @@ router.post("/", (req, res)=>{
 //Supprimer un legume precis 
 
 
-router.delete("/:d", (req, res)=>{
+router.delete("/:id", (req, res)=>{
     const id = parseInt(req.params.id); 
 
-    const index = veggies.findIndex(m => m.id===id );
+    const index = veggies.findIndex(m => m.id===id);
 
     if(index === -1){
         res.status(400).json({message:"Elements non retrouves !! "});
     }
     
     veggies.splice(index, 1);
-
     res.status(200).json({message:"Suppression effectuer avec success : "});
 
 
