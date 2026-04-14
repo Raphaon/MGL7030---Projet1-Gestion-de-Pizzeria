@@ -14,12 +14,31 @@ const PRIX = {
     legume: 1
 };
 
-
-// URLs des routes Express 
 const API = {
     meats:   "/api/meats",
     veggies: "/api/veggies",
 };
+
+
+function httpGet(url, callback) {
+    fetch(url).then(function(response) {
+
+        var req = {
+            url: url
+        };
+
+        var res = {
+            status: response.status,
+            ok:     response.ok,
+            json:   function() {
+                return response.json();
+            }
+        };
+
+        callback(req, res);
+    });
+}
+
 
 export async function chargerGarnitures() {
 
@@ -31,31 +50,36 @@ export async function chargerGarnitures() {
     commadItems.innerHTML = "Aucune Entree dans votre commande";
     let totalCommande = 0;
 
-    let meats, veggies;
+    // appel GET /api/meats 
+    httpGet(API.meats, function(req, res) {
 
-    try {
-        // appel des routes GET
-        [meats, veggies] = await Promise.all([
-            fetch(API.meats).then(r => {
-                if (!r.ok) throw new Error("Erreur meats");
-                return r.json();
-            }),
-            fetch(API.veggies).then(r => {
-                if (!r.ok) throw new Error("Erreur veggies");
-                return r.json();
-            }),
-        ]);
-    } catch (err) {
-        console.warn("API non disponible :", err.message);
-        return;
-    }
+        if (!res.ok) {
+            console.warn("Erreur GET meats:", res.status);
+            return;
+        }
 
-    // injecter les lignes dans le tableau des garnitures
-    injecterTableauGarnitures(meats, veggies);
+        res.json().then(function(meats) {
 
-    // injecter les prix dans le menu latéral
-    injecterMenuLateral();
- 
+            // appel GET /api/veggies 
+            httpGet(API.veggies, function(req, res) {
+
+                if (!res.ok) {
+                    console.warn("Erreur GET veggies :", res.status);
+                    return;
+                }
+
+                res.json().then(function(veggies) {
+
+                    // injecter les lignes dans le tableau des garnitures
+                    injecterTableauGarnitures(meats, veggies);
+
+                    // injecter les prix dans le menu latéral
+                    injecterMenuLateral();
+                });
+            });
+        });
+    });
+
     btnCommand.addEventListener('click', function() {
 
         if(document.querySelector("input[name='format']:checked")  && 
@@ -153,7 +177,6 @@ function injecterTableauGarnitures(meats, veggies) {
 }
 
 // remplace les li de .menu-items
-
 function injecterMenuLateral() {
     const ul = document.querySelector(".menu-items");
     if (!ul) return;
