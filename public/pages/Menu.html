@@ -1,1 +1,156 @@
-Menu App
+<style>
+    .menu-layout {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    .sidebar-card {
+        position: sticky;
+        top: 90px;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+    }
+    .sidebar-card .collection-item.active {
+        background-color: #d32f2f;
+        color: white;
+    }
+    .pizza-detail img {
+        max-height: 320px;
+        object-fit: cover;
+    }
+    .pizza-info {
+        margin-bottom: 1.5rem;
+    }
+    @media (max-width: 992px) {
+        .sidebar-card {
+            position: relative;
+            top: auto;
+            max-height: none;
+        }
+    }
+</style>
+
+<section class="section container">
+    <div class="row">
+        <div class="col s12">
+            <h3 class="center-align">Notre menu</h3>
+            <p class="center-align">Sélectionnez votre pizza préférée pour afficher ses informations détaillées.</p>
+        </div>
+    </div>
+
+    <div class="menu-layout">
+        <div class="col s12 l3">
+            <div class="card sidebar-card">
+                <div class="card-content">
+                    <span class="card-title">Pizzas</span>
+                    <p>Choisissez une pizza pour voir ses détails.</p>
+                </div>
+                <ul class="collection" id="pizzaList"></ul>
+            </div>
+        </div>
+
+        <div class="col s12 l9">
+            <div class="card hoverable pizza-info" id="pizzaInfoCard">
+                <div class="card-image pizza-detail">
+                    <img id="pizzaImage" src="https://images.unsplash.com/photo-1601924582977-4d39e722ea33?auto=format&fit=crop&w=900&q=80" alt="Pizza image">
+                    <span class="card-title" id="pizzaName">Margherita</span>
+                </div>
+                <div class="card-content">
+                    <p><strong>Type :</strong> <span id="pizzaType">Classique</span></p>
+                    <p id="pizzaDescription">Tomate, mozzarella fraîche, basilic et huile d’olive.</p>
+                </div>
+                <div class="card-action">
+                    <span class="red-text text-darken-3" id="pizzaPrice">À partir de 8,50 €</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1548365328-94a4b4a4d0af?auto=format&fit=crop&w=900&q=80" alt="Pizza Pepperoni">
+                            <span class="card-title">Pepperoni</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Tomate, mozzarella, pepperoni croustillant et herbes aromatiques.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1601785971833-42de34c78c34?auto=format&fit=crop&w=900&q=80" alt="Pizza Végétarienne">
+                            <span class="card-title">Végétarienne</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Sauce tomate, légumes frais, mozzarella et basilic.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const pizzas = [
+        {
+            id: 1,
+            name: 'Margherita',
+            type: 'Classique',
+            description: 'Tomate, mozzarella fraîche, basilic et huile d’olive.',
+            price: '8,50 €',
+            image_url: 'https://images.unsplash.com/photo-1601924582977-4d39e722ea33?auto=format&fit=crop&w=900&q=80'
+        },
+        {
+            id: 2,
+            name: 'Pepperoni',
+            type: 'Gourmande',
+            description: 'Tomate, mozzarella, pepperoni croustillant et herbes aromatiques.',
+            price: '10,00 €',
+            image_url: 'https://images.unsplash.com/photo-1548365328-94a4b4a4d0af?auto=format&fit=crop&w=900&q=80'
+        },
+        {
+            id: 3,
+            name: 'Végétarienne',
+            type: 'Fraîcheur',
+            description: 'Sauce tomate, légumes frais, mozzarella et basilic.',
+            price: '9,00 €',
+            image_url: 'https://images.unsplash.com/photo-1601785971833-42de34c78c34?auto=format&fit=crop&w=900&q=80'
+        }
+    ];
+
+    function renderPizzaList() {
+        const list = document.getElementById('pizzaList');
+        list.innerHTML = pizzas.map((pizza, index) => `
+            <li class="collection-item ${index === 0 ? 'active' : ''}" data-id="${pizza.id}">
+                ${pizza.name}
+            </li>
+        `).join('');
+
+        list.querySelectorAll('.collection-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.collection-item').forEach(el => el.classList.remove('active'));
+                item.classList.add('active');
+                const pizzaId = Number(item.dataset.id);
+                showPizza(pizzaId);
+            });
+        });
+    }
+
+    function showPizza(id) {
+        const pizza = pizzas.find(p => p.id === id);
+        if (!pizza) return;
+        document.getElementById('pizzaName').textContent = pizza.name;
+        document.getElementById('pizzaType').textContent = pizza.type;
+        document.getElementById('pizzaDescription').textContent = pizza.description;
+        document.getElementById('pizzaPrice').textContent = `À partir de ${pizza.price}`;
+        document.getElementById('pizzaImage').src = pizza.image_url;
+        document.getElementById('pizzaImage').alt = pizza.name;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderPizzaList();
+        showPizza(pizzas[0].id);
+    });
+</script>
