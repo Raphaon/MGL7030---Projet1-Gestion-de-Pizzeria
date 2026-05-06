@@ -14,4 +14,4 @@ L’objectif est de mettre en pratique les notions de ces langages. L’applicat
 réaliser est une application de gestion de Pizzeria.
 
 
-Pour une meilleures utilisation il est important d'utiliser un serve web 
+Pour une meilleures utilisation il est important d'utiliser un serve web par exemple python -m http.server 8000python -m http.server 8000
