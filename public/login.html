@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion — Pizzeria</title>
+</head>
+<body>
+    <div class="card">
+        <h1>Connexion</h1>
+        <p class="lead">Connectez-vous à votre compte administrateur.</p>
+        <div id="message" class="message"></div>
+        <form id="loginForm">
+            <label for="nom_utilisateur">Nom d'utilisateur</label>
+            <input type="text" id="nom_utilisateur" name="nom_utilisateur" required autocomplete="username" placeholder="admin">
+
+            <label for="mot_de_passe">Mot de passe</label>
+            <input type="password" id="mot_de_passe" name="mot_de_passe" required autocomplete="current-password" placeholder="••••••••">
+
+            <button type="submit">Se connecter</button>
+        </form>
+        <p class="footer-text">Pas encore de compte ? <a href="/api/register">Créer un compte</a></p>
+    </div>
+    <script>
+        const messageEl = document.getElementById('message');
+        const form = document.getElementById('loginForm');
+
+        function showMessage(text, type) {
+            messageEl.textContent = text;
+            messageEl.className = 'message ' + type;
+        }
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const data = {
+                nom_utilisateur: document.getElementById('nom_utilisateur').value.trim(),
+                mot_de_passe: document.getElementById('mot_de_passe').value.trim()
+            };
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (!response.ok) {
+                    showMessage(result.error || 'Connexion impossible.', 'error');
+                    return;
+                }
+                showMessage('Connexion réussie.', 'success');
+            } catch (err) {
+                showMessage('Erreur réseau, veuillez réessayer.', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

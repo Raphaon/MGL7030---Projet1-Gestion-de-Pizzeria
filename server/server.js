@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import meatsRoutes from "./routes/meats.routes.js";
 import veggiesRoutes from  "./routes/vegetables.routes.js";
+import authRoutes from "../modules/auth/auth.controller.js";
 
 import commandsRoutes from "./routes/commands.routes.js";
 
@@ -23,6 +24,9 @@ const __dirname = path.dirname(__filename);
 //recevoir des donnees en JSON
 
 app.use(express.json());
+
+// ajoute des routes d'authentification
+app.use("/api", authRoutes);
 
 //ajoute des routes de viandes 
 app.use("/api/meats", meatsRoutes);

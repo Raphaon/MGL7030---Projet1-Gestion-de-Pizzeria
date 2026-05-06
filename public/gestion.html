@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Admin — Pizzeria</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f4f5; min-height: 100vh; }
+        .page { max-width: 980px; margin: 0 auto; padding: 1.5rem; }
+        header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; background: #b71c1c; color: #fff; padding: 1rem 1.25rem; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,.1); }
+        header h1 { font-size: 1.4rem; margin-bottom: .25rem; }
+        header .meta { color: #fff; font-size: .95rem; }
+        header a { display: inline-block; padding: .65rem 1rem; background: rgba(255,255,255,.18); color: #fff; text-decoration: none; border-radius: 10px; transition: background .2s; }
+        header a:hover { background: rgba(255,255,255,.28); }
+        .cards { display: grid; gap: 1.5rem; margin-top: 1.5rem; }
+        .card { background: #fff; border-radius: 18px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+        .card h2 { margin-bottom: 1rem; color: #b71c1c; font-size: 1.1rem; }
+        .alert { border-radius: 12px; padding: 1rem 1.1rem; margin-bottom: 1rem; font-size: .95rem; }
+        .alert.error { background: #fdecea; color: #b71c1c; border: 1px solid #f5c6cb; }
+        .alert.success { background: #e8f5e9; color: #2e7d32; border: 1px solid #c3e6cb; }
+        .info { margin-bottom: 1rem; background: #fff8e1; color: #7c5200; border: 1px solid #ffe082; border-radius: 12px; padding: .9rem 1rem; }
+        .form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+        label { display: block; margin-bottom: .35rem; font-weight: 600; color: #333; }
+        input { width: 100%; padding: .85rem 1rem; border: 1px solid #d8d8d8; border-radius: 12px; font-size: 1rem; }
+        input:focus { border-color: #b71c1c; outline: none; }
+        .btn { margin-top: 1rem; border: none; background: #b71c1c; color: #fff; border-radius: 12px; padding: .95rem 1.1rem; cursor: pointer; font-weight: 700; transition: background .2s; }
+        .btn:hover { background: #7f0000; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { padding: .9rem 1rem; border-bottom: 1px solid #f0f0f0; text-align: left; }
+        th { background: #fafafa; color: #555; font-size: .85rem; letter-spacing: .05em; text-transform: uppercase; }
+        .empty { text-align: center; color: #777; padding: 1.5rem 0; }
+        .locked { opacity: .5; pointer-events: none; }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header>
+        <div>
+            <h1>Gestion Admin — Pizzeria</h1>
+            <p class="meta">Espace administratif sécurisé</p>
+        </div>
+        <a href="/api/logout">Déconnexion</a>
+    </header>
+
+    <div class="cards">
+        <div class="card" id="profileCard">
+            <h2>Mon compte</h2>
+            <p><strong>Nom :</strong> <span id="username">-</span></p>
+            <p><strong>Groupe :</strong> <span id="group">-</span></p>
+            <p><strong>Permissions :</strong> <span id="permissions">-</span></p>
+        </div>
+
+        <div class="card" id="managementCard">
+            <h2>Ajouter une garniture légume</h2>
+            <div id="permissionMessage" class="info" style="display:none;"></div>
+            <div id="flashMessage"></div>
+            <form id="garnitureForm" method="POST" action="/api/gestion/garniture">
+                <div class="form-row">
+                    <div>
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom" name="nom" required placeholder="Ex : Roquette">
+                    </div>
+                    <div>
+                        <label for="prix">Prix ($)</label>
+                        <input type="number" step="0.01" min="0" id="prix" name="prix" required placeholder="1.00">
+                    </div>
+                </div>
+                <button type="submit" class="btn">Ajouter</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Garnitures légumes</h2>
+            <table>
+                <thead>
+                    <tr><th>#</th><th>Nom</th><th>Prix</th></tr>
+                </thead>
+                <tbody id="legsTable">
+                    <tr><td colspan="3" class="empty">Chargement…</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const flash = document.getElementById('flashMessage');
+    const permissionsEl = document.getElementById('permissions');
+    const usernameEl = document.getElementById('username');
+    const groupEl = document.getElementById('group');
+    const permissionMessage = document.getElementById('permissionMessage');
+    const managementCard = document.getElementById('managementCard');
+    const legsTable = document.getElementById('legsTable');
+
+    function showFlash(type, text) {
+        if (!text) return;
+        flash.innerHTML = `<div class="alert ${type}">${text}</div>`;
+    }
+
+    showFlash('success', params.get('succes'));
+    showFlash('error', params.get('erreur'));
+
+    async function loadData() {
+        try {
+            const response = await fetch('/api/auth/me');
+            if (!response.ok) {
+                window.location.href = '/api/login';
+                return;
+            }
+            const user = await response.json();
+            usernameEl.textContent = user.nomUtilisateur;
+            groupEl.textContent = user.groupe;
+            permissionsEl.textContent = user.permissions.length ? user.permissions.join(', ') : 'Aucune';
+
+            const canManage = user.permissions.includes('gerer_garnitures');
+            if (!canManage) {
+                permissionMessage.textContent = 'Vous n’avez pas la permission gerer_garnitures.';
+                permissionMessage.style.display = 'block';
+                managementCard.classList.add('locked');
+            }
+
+            const listResponse = await fetch('/api/gestion/data');
+            if (!listResponse.ok) {
+                legsTable.innerHTML = '<tr><td colspan="3" class="empty">Impossible de charger les garnitures.</td></tr>';
+                return;
+            }
+            const data = await listResponse.json();
+            if (!Array.isArray(data.legumes) || data.legumes.length === 0) {
+                legsTable.innerHTML = '<tr><td colspan="3" class="empty">Aucune garniture disponible.</td></tr>';
+                return;
+            }
+            legsTable.innerHTML = data.legumes.map((l, index) => `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${l.nom}</td>
+                    <td>${parseFloat(l.prix).toFixed(2)} $</td>
+                </tr>
+            `).join('');
+        } catch (err) {
+            legsTable.innerHTML = '<tr><td colspan="3" class="empty">Erreur réseau, réessayez.</td></tr>';
+        }
+    }
+
+    loadData();
+</script>
+</body>
+</html>
