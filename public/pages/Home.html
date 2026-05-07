@@ -1,162 +1,65 @@
-<!--
-UQAM : Maitrise en Genie logiciel MGL7030 
-
-Projet 1 : Gestion d'une Pizzeria , 
-
-
-============== Intervenants ============== 
-
-1- Rapha ONDOBO
-2- Sidy Gueye
-
-Avant-propos 
-
-Dans le cadre de ce projet il est question de mettre en pratique les connaissances acquise dans le cours de developpement d'application web 3 tiers 
-
- =====================  Description ===================
-
-Pour ce projet, vous aurez à construire la couche présentation (“frontend”) d’une
-application web. Cette couche sera développée en HTML, CSS et JavaScript côté client.
-L’objectif est de mettre en pratique les notions de ces langages. L’application web à
-réaliser est une application de gestion de Pizzeria.
-
--->
-
-
-
-
-
-
-
-
-    <div id="global-container">
-
-        <!-- contient l'entete de note page il contient le titre -->
-        <header class="title">
-            <h1> PIZZERIA </h1>
-        </header>
-        
-       
-        <!-- contient la partie principale qui va potentiellement etre modifie aucours 
-        de la manipulation de nos elements -->
-        <main>
-
-            
-
-                <!-- liste des prix  -->
-            <aside>
-                <h2>Menu </h2>
-                <!-- le menu est injectes dynamiquement par injecterMenuLateral() dans main.js -->
-                <ul class="menu-items">
-                </ul>
-
-            </aside>
-
-
-
-            <!-- les garnitures et les commandes  -->
-
-            <div class="container">
-
-                <!-- les garnitures  -->
-                <div class="pizzas-container">
-                    <h2>
-                        Garniture
-                    </h2>
-                    <div class="garnitures">
-                        <table class="table-garniture">
-
-                            <tr>
-                                <th>Viandes</th>
-                                <th>Légumes</th>
-                            </tr>
-                            <!-- Les sont injectées dynamiquement a partir de GET /api/meats et GET /api/veggies -->
-
-                        </table>
-                    </div>
-
-                    <div>
-                        <h2>Format</h2>
-                        <table class="table-format">
-                            <tr>
-                                <td class="radio_format">
-                                    <input type="radio" value="petite" name="format" id="petite">
-                                </td>
-                                <td>
-                                    <label for="petite">Petite</label>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="radio_format">
-                                    <input type="radio" name="format" id="moyenne" value="moyenne">
-                                </td>
-                                <td>
-                                    <label for="moyenne">Moyenne</label>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="radio_format">
-                                    <input type="radio" value="grande" name="format" id="grande">
-                                </td>
-                                <td>
-                                    <label for="grande">Grande</label>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="btn-commander">
-                        <input type="button" value="Commander" id="orderBtn">
-                    </div>
-       
-                </div>
-
-                <div class="command-container">
-                     <h2>Commandes</h2>
-                     <table id="command-entry" border="1" class="table-format">
-
-                        <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Format</th>
-                            <th>Type</th>
-                            <th>Garniture</th>
-                            <th>Prix ($)</th>
-                            <th>#</th>
-                       </tr>
-                        </thead>
-                        <tbody class="command-item">
-                           
-                        </tbody>
-                        
-                        <tfoot>
-                            <tr>
-                                <th>Date</th>
-                                <th>Format</th>
-                                <th>Type</th>
-                                <th>Garniture</th>
-                                <th>Prix ($)</th>
-                                <th>#</th>
-                            </tr>
-                            <tr>
-                                <td colspan="5"><strong>Total</strong></td>
-                                <td id="totalPrix">0 $</td>
-                            </tr>
-                        </tfoot>
-                     </table>
-                </div>
-                 
-                </div>
-                
-            </div>
-            
-        </main>
-
-        <footer>
-            &copy Tout droit reserve 2026. 
-        </footer>
+<section class="hero">
+    <div class="container center-align">
+        <h2 class="animated-text">Bienvenue chez Pizzeria Express</h2>
+        <p class="flow-text">Des pizzas artisanales, personnalisees a votre gout et commandees en quelques clics.</p>
+        <a href="/menu" class="btn btn-large waves-effect waves-light" style="margin-right: 0.75rem; margin-bottom: 0.5rem;">
+            Voir le Menu
+        </a>
+        <a href="/commander" class="btn btn-large waves-effect waves-light btn-gold">
+            Commander
+        </a>
     </div>
+</section>
 
-  
+<div class="slider">
+    <ul class="slides">
+        <li>
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=80" alt="Pizza fromage fondant">
+            <div class="caption center-align">
+                <h3>Fromage fondant</h3>
+                <h5 class="light grey-text text-lighten-3">Une pizza gourmande pour les vrais amateurs.</h5>
+            </div>
+        </li>
+        <li>
+            <img src="https://images.unsplash.com/photo-1555696954-8f7f967d8c2f?auto=format&fit=crop&w=1600&q=80" alt="Pizza pepperoni">
+            <div class="caption left-align">
+                <h3>Pepperoni croustillant</h3>
+                <h5 class="light grey-text text-lighten-3">Des tranches genereuses et une croute doree.</h5>
+            </div>
+        </li>
+        <li>
+            <img src="https://images.unsplash.com/photo-1548365328-94a4b4a4d0af?auto=format&fit=crop&w=1600&q=80" alt="Margherita classique">
+            <div class="caption right-align">
+                <h3>Margherita classique</h3>
+                <h5 class="light grey-text text-lighten-3">Le gout simple et delicieux de l'Italie.</h5>
+            </div>
+        </li>
+        <li>
+            <img src="https://images.unsplash.com/photo-1601924582977-4d39e722ea33?auto=format&fit=crop&w=1600&q=80" alt="Pizza vegetarienne">
+            <div class="caption center-align">
+                <h3>Vegetarienne fraiche</h3>
+                <h5 class="light grey-text text-lighten-3">Legumes frais et saveurs legeres.</h5>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<section class="section container">
+    <div class="row">
+        <div class="col s12 m4 center-align">
+            <i class="material-icons large red-text text-darken-2">local_pizza</i>
+            <h5>Pizzas artisanales</h5>
+            <p>Pate maison et ingredients frais selectionnes chaque jour.</p>
+        </div>
+        <div class="col s12 m4 center-align">
+            <i class="material-icons large red-text text-darken-2">tune</i>
+            <h5>Personnalisez</h5>
+            <p>Choisissez vos garnitures parmi nos viandes et legumes de saison.</p>
+        </div>
+        <div class="col s12 m4 center-align">
+            <i class="material-icons large red-text text-darken-2">delivery_dining</i>
+            <h5>Rapide et simple</h5>
+            <p>Commandez en quelques clics depuis notre interface intuitive.</p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-label="Pizza Vegetarienne">
+  <rect width="900" height="560" fill="#eff8ec"/>
+  <circle cx="450" cy="280" r="218" fill="#c5893d"/>
+  <circle cx="450" cy="280" r="194" fill="#f3c76f"/>
+  <circle cx="450" cy="280" r="168" fill="#e94a35"/>
+  <g>
+    <rect x="340" y="190" width="72" height="22" rx="11" fill="#2d9448" transform="rotate(25 376 201)"/>
+    <rect x="525" y="235" width="82" height="24" rx="12" fill="#2d9448" transform="rotate(-20 566 247)"/>
+    <rect x="405" y="365" width="92" height="24" rx="12" fill="#2d9448" transform="rotate(12 451 377)"/>
+    <circle cx="350" cy="330" r="28" fill="#5b3f8c"/>
+    <circle cx="560" cy="345" r="28" fill="#5b3f8c"/>
+    <circle cx="470" cy="245" r="27" fill="#5b3f8c"/>
+    <path d="M310 255c28-24 62-24 90 0" fill="none" stroke="#f7faf2" stroke-width="20" stroke-linecap="round"/>
+    <path d="M505 180c28-24 62-24 90 0" fill="none" stroke="#f7faf2" stroke-width="20" stroke-linecap="round"/>
+  </g>
+  <text x="450" y="520" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#285a32">Vegetarienne</text>
+</svg>

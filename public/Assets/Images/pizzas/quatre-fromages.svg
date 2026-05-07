@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-label="Pizza Quatre Fromages">
+  <rect width="900" height="560" fill="#fff7db"/>
+  <circle cx="450" cy="280" r="218" fill="#bf7a2f"/>
+  <circle cx="450" cy="280" r="194" fill="#f1c166"/>
+  <circle cx="450" cy="280" r="168" fill="#ffdd81"/>
+  <g>
+    <path d="M315 240c54-44 116-48 178-8c42 26 82 23 126-8" fill="none" stroke="#fff9cf" stroke-width="42" stroke-linecap="round"/>
+    <path d="M320 345c72-48 150-46 240-5" fill="none" stroke="#f7b85d" stroke-width="38" stroke-linecap="round"/>
+    <circle cx="375" cy="220" r="32" fill="#fff3b5"/>
+    <circle cx="520" cy="270" r="34" fill="#f5d255"/>
+    <circle cx="420" cy="370" r="31" fill="#f7efcd"/>
+    <circle cx="565" cy="365" r="29" fill="#e6b84e"/>
+  </g>
+  <text x="450" y="520" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#7a4d16">Quatre Fromages</text>
+</svg>

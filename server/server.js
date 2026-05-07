@@ -2,78 +2,38 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import meatsRoutes from "./routes/meats.routes.js";
-import veggiesRoutes from  "./routes/vegetables.routes.js";
-import authRoutes from "../modules/auth/auth.controller.js";
-
+import veggiesRoutes from "./routes/vegetables.routes.js";
+import formatsRoutes from "./routes/formats.routes.js";
 import commandsRoutes from "./routes/commands.routes.js";
-
+import pizzasRoutes from "./routes/pizzas.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
+import usersRoutes from "./routes/users.routes.js";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 4000;
 
-// recréer __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-
-
-
-
-
-//recevoir des donnees en JSON
-
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-// ajoute des routes d'authentification
-app.use("/api", authRoutes);
-
-//ajoute des routes de viandes 
-app.use("/api/meats", meatsRoutes);
-
-
-
-
-
-//ajouter les routes des legumes 
-
-app.use("/api/veggies", veggiesRoutes);
-
-
-
-// Ajout de la route de commandes 
-
+app.use("/api",          adminRoutes);
+app.use("/api/meats",    meatsRoutes);
+app.use("/api/veggies",  veggiesRoutes);
+app.use("/api/formats",  formatsRoutes);
 app.use("/api/commands", commandsRoutes);
-
-
-
-
-//servir le frontend 
-
+app.use("/api/pizzas",   pizzasRoutes);
+app.use("/api/users",    usersRoutes);
 
 app.use(express.static(path.join(__dirname, "../public")));
 
-
-
-// fallback intelligent
 app.use((req, res, next) => {
-
-    // elle permet de laisser passer l'API
-    if (req.path.startsWith("/api")) {
-        return next();
-    }
-
-    // laisser passer fichiers (js, css, etc.)
-    if (req.path.includes(".")) {
-        return next();
-    }
-
-    // sinon SPA
+    if (req.path.startsWith("/api")) return next();
+    if (req.path.includes("."))      return next();
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-
-// démarrer serveur
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

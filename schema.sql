@@ -1,75 +1,172 @@
--- PostgreSQL Schema for Pizzeria Management System
--- Generated based on module models
+-- Script de creation PostgreSQL - Laboratoire 3
+-- Application de gestion de pizzeria
 
--- Table: Garniture (Toppings)
-CREATE TABLE Garniture (
+DROP TABLE IF EXISTS command_vegetables;
+DROP TABLE IF EXISTS commands;
+DROP TABLE IF EXISTS pizzas;
+DROP TABLE IF EXISTS formats;
+DROP TABLE IF EXISTS vegetables;
+DROP TABLE IF EXISTS meats;
+DROP TABLE IF EXISTS admins;
+DROP TABLE IF EXISTS user_groups;
+DROP TABLE IF EXISTS group_permissions;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS groups;
+DROP TABLE IF EXISTS permissions;
+
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    nom VARCHAR(255) NOT NULL
+    username VARCHAR(80) NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table: FormatPizza (Pizza sizes/formats)
-CREATE TABLE FormatPizza (
+CREATE TABLE groups (
     id SERIAL PRIMARY KEY,
-    taille VARCHAR(50) NOT NULL,
-    prix NUMERIC(10,2) NOT NULL
+    name VARCHAR(80) NOT NULL UNIQUE,
+    label VARCHAR(120) NOT NULL
 );
 
--- Table: Pizza (Pizza menu items)
-CREATE TABLE Pizza (
+CREATE TABLE permissions (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    type VARCHAR(100),
-    description TEXT,
-    price NUMERIC(10,2),
-    image_url VARCHAR(500)
+    name VARCHAR(120) NOT NULL UNIQUE,
+    label VARCHAR(160) NOT NULL
 );
 
--- Junction Table: Pizza_Garniture (Many-to-many: Pizza can have multiple garnitures)
-CREATE TABLE Pizza_Garniture (
-    pizzaId INTEGER NOT NULL,
-    garnitureId INTEGER NOT NULL,
-    PRIMARY KEY (pizzaId, garnitureId),
-    FOREIGN KEY (pizzaId) REFERENCES Pizza(id) ON DELETE CASCADE,
-    FOREIGN KEY (garnitureId) REFERENCES Garniture(id) ON DELETE CASCADE
+CREATE TABLE user_groups (
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    group_id INTEGER NOT NULL REFERENCES groups(id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, group_id)
 );
 
--- Junction Table: Pizza_FormatPizza (Many-to-many: Pizza can have multiple formats)
-CREATE TABLE Pizza_FormatPizza (
-    pizzaId INTEGER NOT NULL,
-    formatPizzaId INTEGER NOT NULL,
-    PRIMARY KEY (pizzaId, formatPizzaId),
-    FOREIGN KEY (pizzaId) REFERENCES Pizza(id) ON DELETE CASCADE,
-    FOREIGN KEY (formatPizzaId) REFERENCES FormatPizza(id) ON DELETE CASCADE
+CREATE TABLE group_permissions (
+    group_id INTEGER NOT NULL REFERENCES groups(id) ON DELETE CASCADE,
+    permission_id INTEGER NOT NULL REFERENCES permissions(id) ON DELETE CASCADE,
+    PRIMARY KEY (group_id, permission_id)
 );
 
--- Table: Commande (Orders)
-CREATE TABLE Commande (
+CREATE TABLE admins (
+    user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE meats (
     id SERIAL PRIMARY KEY,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    totalPrice NUMERIC(10,2),
-    pourcentageReduction NUMERIC(5,2),
-    status VARCHAR(50)
+    name VARCHAR(120) NOT NULL UNIQUE,
+    prix NUMERIC(10, 2) NOT NULL CHECK (prix >= 0)
 );
 
--- Table: LigneCommande (Order line items)
-CREATE TABLE LigneCommande (
+CREATE TABLE vegetables (
     id SERIAL PRIMARY KEY,
-    commandeId INTEGER NOT NULL,
-    pizzaId INTEGER NOT NULL,
-    formatPizzaId INTEGER NOT NULL,
-    quantity INTEGER NOT NULL,
-    montantReduction NUMERIC(10,2),
-    totalPrice NUMERIC(10,2),
-    FOREIGN KEY (commandeId) REFERENCES Commande(id) ON DELETE CASCADE,
-    FOREIGN KEY (pizzaId) REFERENCES Pizza(id) ON DELETE CASCADE,
-    FOREIGN KEY (formatPizzaId) REFERENCES FormatPizza(id) ON DELETE CASCADE
+    name VARCHAR(120) NOT NULL UNIQUE,
+    prix NUMERIC(10, 2) NOT NULL CHECK (prix >= 0)
 );
 
--- Indexes for performance
-CREATE INDEX idx_pizza_garniture_pizzaId ON Pizza_Garniture(pizzaId);
-CREATE INDEX idx_pizza_garniture_garnitureId ON Pizza_Garniture(garnitureId);
-CREATE INDEX idx_pizza_format_pizzaId ON Pizza_FormatPizza(pizzaId);
-CREATE INDEX idx_pizza_format_formatPizzaId ON Pizza_FormatPizza(formatPizzaId);
-CREATE INDEX idx_ligne_commande_commandeId ON LigneCommande(commandeId);
-CREATE INDEX idx_ligne_commande_pizzaId ON LigneCommande(pizzaId);
-CREATE INDEX idx_ligne_commande_formatPizzaId ON LigneCommande(formatPizzaId);
+CREATE TABLE formats (
+    id SERIAL PRIMARY KEY,
+    value VARCHAR(60) NOT NULL UNIQUE,
+    label VARCHAR(120) NOT NULL,
+    prix NUMERIC(10, 2) NOT NULL CHECK (prix >= 0)
+);
+
+CREATE TABLE pizzas (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(160) NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL,
+    ingredients TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+    image TEXT,
+    prix_base NUMERIC(10, 2) NOT NULL CHECK (prix_base >= 0)
+);
+
+ALTER TABLE pizzas ADD CONSTRAINT pizzas_nom_unique UNIQUE (nom);
+
+CREATE TABLE commands (
+    id SERIAL PRIMARY KEY,
+    items VARCHAR(120) NOT NULL,
+    garniture VARCHAR(120) NOT NULL,
+    format VARCHAR(60) NOT NULL,
+    unit_price NUMERIC(10, 2) NOT NULL CHECK (unit_price >= 0),
+    quantity INTEGER NOT NULL CHECK (quantity > 0),
+    client_id VARCHAR(80),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE command_vegetables (
+    command_id INTEGER NOT NULL REFERENCES commands(id) ON DELETE CASCADE,
+    vegetable_name VARCHAR(120) NOT NULL,
+    PRIMARY KEY (command_id, vegetable_name)
+);
+
+CREATE INDEX idx_commands_created_at ON commands(created_at);
+CREATE INDEX idx_command_vegetables_command_id ON command_vegetables(command_id);
+
+INSERT INTO groups (name, label) VALUES
+    ('admin', 'Administrateurs'),
+    ('employee', 'Employes');
+
+INSERT INTO permissions (name, label) VALUES
+    ('admin:gestion', 'Acceder a la section de gestion'),
+    ('vegetables:create', 'Ajouter des garnitures legumes');
+
+INSERT INTO group_permissions (group_id, permission_id)
+SELECT g.id, p.id
+FROM groups g
+CROSS JOIN permissions p
+WHERE g.name = 'admin';
+
+INSERT INTO meats (name, prix) VALUES
+    ('Pepperoni', 3.00),
+    ('Sausage', 3.00),
+    ('Chicken', 3.00),
+    ('Beef', 3.00),
+    ('Bacon', 3.00),
+    ('Ham', 3.00);
+
+INSERT INTO vegetables (name, prix) VALUES
+    ('Mushrooms', 1.00),
+    ('Onions', 1.00),
+    ('Green Peppers', 1.00),
+    ('Black Olives', 1.00),
+    ('Tomatoes', 1.00),
+    ('Spinach', 1.00);
+
+INSERT INTO formats (value, label, prix) VALUES
+    ('petite', 'Petite', 8.00),
+    ('moyenne', 'Moyenne', 12.00),
+    ('grande', 'Grande', 15.00);
+
+INSERT INTO pizzas (nom, type, description, ingredients, image, prix_base) VALUES
+    (
+        'Margherita',
+        'Classique',
+        'Sauce tomate, mozzarella fraiche et basilic.',
+        ARRAY['Sauce tomate', 'Mozzarella', 'Basilic'],
+        '/Assets/Images/pizzas/margherita.svg',
+        8.00
+    ),
+    (
+        'Pepperoni',
+        'Gourmande',
+        'Sauce tomate, mozzarella et pepperoni croustillant.',
+        ARRAY['Sauce tomate', 'Mozzarella', 'Pepperoni'],
+        '/Assets/Images/pizzas/pepperoni.svg',
+        10.00
+    ),
+    (
+        'Vegetarienne',
+        'Fraicheur',
+        'Sauce tomate, legumes frais et mozzarella.',
+        ARRAY['Sauce tomate', 'Mozzarella', 'Poivrons', 'Champignons', 'Oignons'],
+        '/Assets/Images/pizzas/vegetarienne.svg',
+        9.00
+    ),
+    (
+        'Quatre Fromages',
+        'Gourmande',
+        'Mozzarella, gorgonzola, parmesan et ricotta.',
+        ARRAY['Mozzarella', 'Gorgonzola', 'Parmesan', 'Ricotta'],
+        '/Assets/Images/pizzas/quatre-fromages.svg',
+        11.00
+    );

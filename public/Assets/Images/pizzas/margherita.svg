@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-label="Pizza Margherita">
+  <rect width="900" height="560" fill="#fff3df"/>
+  <circle cx="450" cy="280" r="218" fill="#d99a43"/>
+  <circle cx="450" cy="280" r="194" fill="#f5c66b"/>
+  <circle cx="450" cy="280" r="170" fill="#c9352b"/>
+  <g fill="#fff7dd">
+    <circle cx="360" cy="225" r="34"/>
+    <circle cx="510" cy="205" r="40"/>
+    <circle cx="555" cy="335" r="36"/>
+    <circle cx="390" cy="365" r="42"/>
+    <circle cx="455" cy="280" r="38"/>
+  </g>
+  <g fill="#2f8f45">
+    <ellipse cx="320" cy="305" rx="22" ry="10" transform="rotate(-28 320 305)"/>
+    <ellipse cx="470" cy="395" rx="25" ry="11" transform="rotate(18 470 395)"/>
+    <ellipse cx="590" cy="250" rx="24" ry="10" transform="rotate(-18 590 250)"/>
+    <ellipse cx="420" cy="170" rx="21" ry="10" transform="rotate(35 420 170)"/>
+  </g>
+  <text x="450" y="520" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#7a2c1d">Margherita</text>
+</svg>

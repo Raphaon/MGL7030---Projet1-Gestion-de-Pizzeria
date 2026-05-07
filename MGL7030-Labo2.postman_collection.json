@@ -1,266 +1,317 @@
 {
   "info": {
     "_postman_id": "508ed946-13e5-491d-ac29-199338e28c59",
-    "name": "MGL7030-Labo2",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "49512884",
-    "_collection_link": "https://go.postman.co/collection/49512884-508ed946-13e5-491d-ac29-199338e28c59?source=collection_link"
+    "name": "MGL7030-Labo3-Pizzeria",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000"
+    }
+  ],
   "item": [
     {
-      "name": "Delete viande",
-      "request": {
-        "auth": {
-          "type": "noauth"
+      "name": "Garnitures viande",
+      "item": [
+        {
+          "name": "Obtenir les viandes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/meats"
+          },
+          "response": []
         },
-        "method": "DELETE",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+        {
+          "name": "Ajouter une viande",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Salami\",\n  \"prix\": 3.50\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/meats"
+          },
+          "response": []
         },
-        "url": {
-          "raw": "http://localhost:3000/api/meats/1774991662929",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "api",
-            "meats",
-            "1774991662929"
-          ]
+        {
+          "name": "Supprimer une viande",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/meats/1"
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Get viandes",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/api/meats",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "api",
-            "meats"
-          ]
+      "name": "Garnitures legumes",
+      "item": [
+        {
+          "name": "Obtenir les legumes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/veggies"
+          },
+          "response": []
+        },
+        {
+          "name": "Ajouter un legume",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Artichokes\",\n  \"prix\": 1.25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/veggies"
+          },
+          "response": []
+        },
+        {
+          "name": "Supprimer un legume",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/veggies/1"
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Ajouter Viande",
-      "request": {
-        "auth": {
-          "type": "noauth"
+      "name": "Formats",
+      "item": [
+        {
+          "name": "Obtenir les formats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/formats"
+          },
+          "response": []
         },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n        \"id\": 1774991772045,\r\n        \"name\": \"tout garnie  \",\r\n        \"prix\": 3\r\n    }",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+        {
+          "name": "Ajouter un format",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"familiale\",\n  \"label\": \"Familiale\",\n  \"prix\": 19.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/formats"
+          },
+          "response": []
         },
-        "url": {
-          "raw": "http://localhost:3000/api/meats",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "api",
-            "meats"
-          ]
+        {
+          "name": "Supprimer un format",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/formats/1"
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Get Commands ",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "auth": {
-          "type": "noauth"
+      "name": "Commandes",
+      "item": [
+        {
+          "name": "Obtenir les commandes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/commands"
+          },
+          "response": []
         },
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n        \"id\": 1774991772045,\r\n        \"name\": \"tout garnie  \",\r\n        \"prix\": 3\r\n    }"
+        {
+          "name": "Ajouter une commande",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": \"Pizza\",\n  \"garniture\": \"Pepperoni\",\n  \"format\": \"moyenne\",\n  \"unitPrice\": 16.00,\n  \"quantity\": 1,\n  \"clientID\": \"Cl0001\",\n  \"legumes\": [\"Onions\", \"Tomatoes\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/commands"
+          },
+          "response": []
         },
-        "url": {
-          "raw": "http://localhost:3000/api/commands",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "api",
-            "commands"
-          ]
+        {
+          "name": "Supprimer une commande",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/commands/1"
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Add Commads",
-      "request": {
-        "auth": {
-          "type": "noauth"
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": " {\r\n    \"items\": \"Pizza\",\r\n    \"garniture\": \"Viande\",\r\n    \"format\": \"moyenne\",\r\n    \"unitPrice\": 103,\r\n    \"quantity\": 2,\r\n    \"clientID\": \"Cl0002\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/api/commands",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "api",
-            "commands"
-          ]
+      "name": "Menu pizzas",
+      "item": [
+        {
+          "name": "Obtenir les pizzas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/pizzas"
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Delete-commands",
-      "request": {
-        "auth": {
-          "type": "noauth"
+      "name": "Administration",
+      "item": [
+        {
+          "name": "Afficher login",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/login"
+          },
+          "response": []
         },
-        "method": "DELETE",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": " {\r\n    \"id\": \"1774992826511\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+        {
+          "name": "Connexion administrateur",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "admin123",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{baseUrl}}/api/login"
+          },
+          "response": []
         },
-        "url": {
-          "raw": "http://localhost:3000/api/commands/2",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "api",
-            "commands",
-            "2"
-          ]
+        {
+          "name": "Afficher gestion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/gestion"
+          },
+          "response": []
+        },
+        {
+          "name": "Ajouter un legume depuis gestion",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "Pineapple",
+                  "type": "text"
+                },
+                {
+                  "key": "prix",
+                  "value": "1.50",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{baseUrl}}/api/gestion"
+          },
+          "response": []
+        },
+        {
+          "name": "Deconnexion administrateur",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/logout"
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Get Veggies",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "auth": {
-          "type": "noauth"
-        },
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/api/veggies",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "api",
-            "veggies"
-          ]
+      "name": "Modele users groupes permissions",
+      "item": [
+        {
+          "name": "Obtenir le modele user/group/permission",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users/model"
+          },
+          "response": []
         }
-      },
-      "response": []
-    },
-    {
-      "name": "New Request",
-      "request": {
-        "method": "GET",
-        "header": []
-      },
-      "response": []
-    },
-    {
-      "name": "Ajouter legumes",
-      "request": {
-        "auth": {
-          "type": "noauth"
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": " {\r\n        \"id\": 1,\r\n        \"name\": \"Mushroxzczxczxczxoms\",\r\n        \"prix\": 1\r\n    }",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/api/veggies",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "api",
-            "veggies"
-          ]
-        }
-      },
-      "response": []
+      ]
     }
   ]
 }

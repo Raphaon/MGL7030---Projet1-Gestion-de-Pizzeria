@@ -3,186 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion de Pizzeria</title>
-    <!-- Materialize CSS -->
+    <title>Pizzeria Express - MGL7030</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./Assets/Css/main.css">
-    <style>
-        body {
-            background-color: #f5f5f5;
-        }
-        nav {
-            background-color: #d32f2f !important; /* McDonald's red */
-        }
-        .brand-logo {
-            font-weight: bold;
-            color: #ffd700 !important; /* Gold */
-        }
-        .hero {
-            text-align: center;
-            padding: 3rem 1rem;
-            background: linear-gradient(135deg, #d32f2f 0%, #ffd700 100%);
-            color: white;
-            margin-bottom: 0;
-        }
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .btn-large {
-            background-color: #ffd700 !important;
-            color: #d32f2f !important;
-            font-weight: bold;
-        }
-        .btn-large:hover {
-            background-color: #ffb300 !important;
-        }
-        .slider {
-            height: 420px;
-        }
-        .slider .slides li .caption {
-            top: 35%;
-        }
-        .animated-text {
-            animation: pulse 2.5s ease-in-out infinite;
-        }
-        .slider-section {
-            margin-top: 2rem;
-        }
-        .slider {
-            height: 420px;
-        }
-        .slider .slides li .caption {
-            top: 35%;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: translateY(0); }
-            50% { opacity: 0.85; transform: translateY(-8px); }
-        }
-        footer.page-footer {
-            background-color: #d32f2f !important;
-            color: white;
-            padding: 1rem 0;
-        }
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-        .footer-content p {
-            margin: 0;
-            color: white;
-        }
-        .footer-logo {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #ffd700;
-        }
-        .footer-copy {
-            color: #ffe082;
-        }
-    </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav>
         <div class="nav-wrapper container">
-            <a href="/" class="brand-logo">🍕 Pizzeria Express</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a href="/" class="brand-logo">Pizzeria Express</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/">Accueil</a></li>
                 <li><a href="/menu">Menu</a></li>
-                <li><a href="/orders">Commandes</a></li>
+                <li><a href="/commander">Commander</a></li>
+                <li><a href="/api/login">Admin</a></li>
             </ul>
         </div>
     </nav>
 
-    <ul class="sidenav" id="mobile-demo">
+    <ul class="sidenav" id="mobile-nav">
         <li><a href="/">Accueil</a></li>
         <li><a href="/menu">Menu</a></li>
-        <li><a href="/orders">Commandes</a></li>
+        <li><a href="/commander">Commander</a></li>
+        <li><a href="/api/login">Admin</a></li>
     </ul>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container center-align">
-            <h2 class="animated-text">Bienvenue chez Pizzeria Express</h2>
-            <p class="flow-text">Découvrez nos délicieuses pizzas, commandez en ligne et profitez d'une expérience rapide et savoureuse !</p>
-            <a href="/menu" class="btn btn-large waves-effect waves-light">Voir le Menu</a>
-        </div>
-    </section>
-
-    <!-- Slider Section -->
-    <section class="slider-section">
-        <div class="slider">
-            <ul class="slides">
-                <li>
-                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=80" alt="Pizza au fromage fondant">
-                    <div class="caption center-align">
-                        <h3>Fromage fondant</h3>
-                        <h5 class="light grey-text text-lighten-3">Une pizza gourmande pour les vrais amateurs.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://images.unsplash.com/photo-1555696954-8f7f967d8c2f?auto=format&fit=crop&w=1600&q=80" alt="Pizza pepperoni croustillant">
-                    <div class="caption left-align">
-                        <h3>Pepperoni croustillant</h3>
-                        <h5 class="light grey-text text-lighten-3">Des tranches généreuses et une croûte dorée.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://images.unsplash.com/photo-1548365328-94a4b4a4d0af?auto=format&fit=crop&w=1600&q=80" alt="Pizza Margherita classique">
-                    <div class="caption right-align">
-                        <h3>Margherita classique</h3>
-                        <h5 class="light grey-text text-lighten-3">Le goût simple et délicieux de l’Italie.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://images.unsplash.com/photo-1601924582977-4d39e722ea33?auto=format&fit=crop&w=1600&q=80" alt="Pizza végétarienne fraîche">
-                    <div class="caption center-align">
-                        <h3>Végétarienne fraîche</h3>
-                        <h5 class="light grey-text text-lighten-3">Légumes frais et saveurs légères.</h5>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- App Content -->
-    <main class="container">
-        <div id="app">
-            <!-- Contenu dynamique chargé par le routeur -->
-        </div>
-    </main>
+    <main id="app"></main>
 
     <footer class="page-footer">
-        <div class="container footer-content">
-            <div class="footer-logo">Pizzeria Express</div>
-            <p class="footer-copy">Rapha & Sidy 2026 &copy; MGL7030</p>
+        <div class="container footer-row">
+            <span class="footer-logo">Pizzeria Express</span>
+            <span class="footer-copy">Rapha &amp; Sidy 2026 &copy; MGL7030</span>
         </div>
     </footer>
 
-    <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var sidenavElems = document.querySelectorAll('.sidenav');
-            M.Sidenav.init(sidenavElems);
-
-            var sliderElems = document.querySelectorAll('.slider');
-            M.Slider.init(sliderElems, {
-                indicators: true,
-                height: 420,
-                duration: 600,
-                interval: 5000
-            });
+        document.addEventListener("DOMContentLoaded", () => {
+            M.Sidenav.init(document.querySelectorAll(".sidenav"));
         });
     </script>
     <script type="module" src="./src/app.js"></script>
-      <script  type="module" src="./Assets/Js/main.js" ></script>
 </body>
 </html>

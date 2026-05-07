@@ -1,56 +1,28 @@
-const ROUTES = [{
-    pageId: "home",
-    pageTitle: "Home",
-    pageFile: "Home.html",
-    pageUrl: "/"
-},
-{
-        pageId: "orderDetail",
-        pageUrl: "/orders/:id",
-        pageFile: "OrderDetail.html",
-        pageTitle: "Order Details"
+const ROUTES = [
+    {
+        pageId: "home",
+        pageTitle: "Accueil - Pizzeria Express",
+        pageFile: "Home.html",
+        pageUrl: "/"
     },
-{
-    pageId: "home",
-    pageTitle: "Home",
-    pageFile: "Home.html",
-    pageUrl: "/home"
-},
+    {
+        pageId: "home",
+        pageTitle: "Accueil - Pizzeria Express",
+        pageFile: "Home.html",
+        pageUrl: "/home"
+    },
+    {
+        pageId: "menu",
+        pageTitle: "Menu - Pizzeria Express",
+        pageFile: "Menu.html",
+        pageUrl: "/menu"
+    },
+    {
+        pageId: "commander",
+        pageTitle: "Commander - Pizzeria Express",
+        pageFile: "Commander.html",
+        pageUrl: "/commander"
+    }
+];
 
-{
-    pageId: "menu",
-    pageTitle: "Menu",
-    pageFile: "Menu.html",
-    pageUrl: "/menu"
-}, {
-    pageId: "orders",
-    pageTitle: "Orders",
-    pageFile: "Orders.html",
-    pageUrl: "/orders"
-}, {
-    pageId: "customers",
-    pageTitle: "Customers",
-    pageFile: "Customers.html",
-    pageUrl: "/customers"
-}, {
-    pageId: "inventory",
-    pageTitle: "Inventory",
-    pageFile: "Inventory.html",
-    pageUrl: "/inventory"
-}, {
-    pageId: "reports",
-    pageTitle: "Reports",
-    pageFile: "Reports.html",
-    pageUrl: "/reports"
-
-},
-{
-        pageId: "admin",
-        pageUrl: "/admin",
-        pageFile: "Admin.html",
-        pageTitle: "Admin",
-        protected: true
-    }];
- export default ROUTES;
-
-
+export default ROUTES;

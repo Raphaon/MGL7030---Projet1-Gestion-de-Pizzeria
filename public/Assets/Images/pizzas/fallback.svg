@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-label="Pizza">
+  <rect width="900" height="560" fill="#f7f3ef"/>
+  <circle cx="450" cy="280" r="210" fill="#d9913f"/>
+  <circle cx="450" cy="280" r="180" fill="#f3c76f"/>
+  <circle cx="450" cy="280" r="150" fill="#d94332"/>
+  <g fill="#fff5d6">
+    <circle cx="380" cy="230" r="34"/>
+    <circle cx="520" cy="250" r="34"/>
+    <circle cx="430" cy="360" r="34"/>
+  </g>
+  <text x="450" y="520" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#7a2c1d">Pizza</text>
+</svg>
